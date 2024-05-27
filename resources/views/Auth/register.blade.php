@@ -53,24 +53,24 @@
             </div>
             <div class="col-md-4 col-12">
                 <label for="inputState" class="form-label">Country</label>
-                <select id="inputState" class="form-select">
+                <select id="inputState" name="country" class="form-select">
                     <option selected>Choose...</option>
-                    <option>...</option>
+                    <option value="Cameroun">Cameroun</option>
                 </select>
                 @error('country')
                     <div class="text-danger small col-md-12 col-12"> {{ $message }} </div>
                 @enderror
             </div>
-            <div class="col-md-6 col-12">
+            <div class="col-md-4 col-12">
                 <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
+                <input type="text" class="form-control" id="inputCity" placeholder="Douala City" name="city">
                 @error('city')
                     <div class="text-danger small col-md-12 col-12"> {{ $message }} </div>
                 @enderror
             </div>
-            <div class="col-md-2">
-            <label for="inputZip" class="form-label">Zip</label>
-            <input type="text" class="form-control" id="inputZip">
+            <div class="col-md-4 col-12">
+            <label for="inputZip" class="form-label">Telephone</label>
+            <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="670 XXX XXX">
             </div>
             <div class="col-12">
                 <div class="form-check">

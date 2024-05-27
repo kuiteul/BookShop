@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserModel extends Model
 {
-    use HasFactory;
-    use HasUuid;
-
+   
     protected $table = "users";
     protected $primaryKey = 'user_id';
     public $incrementing = false;
     protected $keyType = 'string';
+
+    use HasFactory;
+    use HasUuids;
+
 }
