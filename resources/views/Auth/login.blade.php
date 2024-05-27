@@ -10,6 +10,7 @@
     <h1 class="text-center fw-bold" id="welcome-login">WELCOME TO BOOKSHOP WEBSITE</h1>
     <br><br>
     <div class="col-md-4 col-12 offset-md-4 border" id="login">
+        <br>
         <h2 class="col-10 offset-1">Sign in</h2>
         <br>
         <form action="{{ url('login') }}" method="post" class="col">

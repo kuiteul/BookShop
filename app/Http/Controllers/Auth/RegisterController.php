@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
@@ -14,6 +15,6 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request) {
 
-
+        
     }
 }
