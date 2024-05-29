@@ -24,6 +24,11 @@ return new class extends Migration
                     ->on('users')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
+            $table->foreignUuid('genre_id')
+                    ->references('genre_id')
+                    ->on('genre')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
 

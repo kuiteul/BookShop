@@ -30,7 +30,7 @@
             @enderror
             <br>
             <div class="col-8 offset-1">
-                <button class="btn btn-primary col-12 col-md-6 fs-5">Sign in</button>
+                <button class="btn btn-primary col-12 col-md-6 fs-5"><i class="bi bi-box-arrow-in-right"></i> Sign in</button>
             </div>
             <br>
             <div class="row">

@@ -3,16 +3,22 @@
     namespace App\Repository;
 
     use App\Models\UserModel;
+    use App\Repository\LogRepository;
+    use App\Models\LogModel;
     use Exception;
 
 
 class UserRepository
 {
     protected $user_repo;
+    protected $_log;
+    protected $_log_repo;
 
-    public function __construct(UserModel $user)
+    public function __construct(UserModel $user, LogModel $log, LogRepository $log_repo)
     {   
         $this->_user_repo = $user;
+        $this->_log = $log;
+        $this->_log_repo = $log_repo;
 
     }
 
@@ -29,10 +35,19 @@ class UserRepository
         try
         {
             $user->save();
+            return true;
         }
         catch(Exception $e)
         {
-            die("<h1><center>Error when inserting the data</center></h1><br><br><br>". $e->getMessage());
+            
+            $log = new $this->_log;
+            $array = array(
+                "log_error" => "Failed to insert ". $user . " into the database",
+                "log_message" => $e->getMessage()
+            );
+            $this->_log_repo->save($log, $array);
+           
+            return false;
         }
     }
 
@@ -40,13 +55,13 @@ class UserRepository
     {
         $user = new $this->_user_repo;
 
-        $this->save($user, $input);
+        return $this->save($user, $input);
         
     }
 
     public function getPaginate(int $number)
     {
-
+        
         try
         {
             return $this->_user_repo->paginate($number);

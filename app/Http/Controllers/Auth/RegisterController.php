@@ -24,7 +24,8 @@ class RegisterController extends Controller
 
     public function store(RegisterRequest $request) {
 
-        return view('Auth.confirm', ['user' => $this->_data->store($request->all())]);
+        $result = $this->_data->store($request->all());
+        return view('Auth.confirm', ['user' => $result]);
         
     }
 }
