@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardAdmin;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\GenreController;
 
 
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified']);
@@ -19,3 +20,4 @@ Route::post('register', [RegisterController::class, 'store']);
 
 Route::get('admin', [DashboardAdmin::class, 'index'])->middleware(['auth', 'verified']);
 Route::resource('admin/book', BookController::class)->middleware(['auth', 'verified']);
+Route::resource('admin/genre', GenreController::class)->middleware(['auth', 'verified']);

@@ -76,6 +76,6 @@ main button {
     cursor: pointer;
 }
 
-.cursor:hover {
+tr:hover {
     background-color: rgb(26, 28, 82) !important;
 }

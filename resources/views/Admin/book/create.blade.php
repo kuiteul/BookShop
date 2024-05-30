@@ -53,9 +53,11 @@
                             <label for="inputState" class="form-label">Select genre</label>
                             <select id="inputGenre" class="form-select" name="genre-id" >
                               <option disabled selected>Choose...</option>
-                              <option value="Art">Art</option>
+                              @foreach ($genre as $item_genre)
+                                <option value="{{ $item_genre->genre_id}}">{{$item_genre->genre_name}}</option>
+                              @endforeach
                             </select>
-                            @error('genre')
+                            @error('genre-id')
                               <div class="text-danger small"> {{ $message }}</div>
                             @enderror
                           </div>

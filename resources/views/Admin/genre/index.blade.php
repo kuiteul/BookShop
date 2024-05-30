@@ -18,34 +18,28 @@
 
             <main class="col-md-6 offset-md-1 border">
                 <div class="row">
-                    <h1 class="text-center text-capitalize col-12">list of books</h1>
+                    <h1 class="text-center text-capitalize col-12">list of Genres of books</h1>
                 </div>
 
                 <table class="table border">
                     <thead>
-                        <td colspan="4" class="text-center">Books present in the database</td>
-                        <td> <a href=" {{url('admin/book/create') }}" alt="Add a book"><i class="bi bi-plus-circle"></i> New book</a></td>
+                        <td colspan="4" class="text-center">Genre of book present in the database</td>
+                        <td> <a href=" {{url('admin/genre/create') }}" alt="Add a book"><i class="bi bi-plus-circle"></i> New genre</a></td>
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Title</th>
-                            <th>Descritpion</th>
-                            <th>Author</th>
-                            <th>Price</th>
-                            <th>Genre</th>
+                            <th colspan="2">Genre name</th>
+                            <th colspan="3">Descritpion</th>
                         </tr>
-                        @if ($book->isEmpty())
-                            <tr>
-                                <td colspan="5" class="text-center text-warning fs-2"> No book in the database </td>
+                        @if($genre->isEmpty())
+                            <tr>                     
+                                <td colspan="2" class="text-center text-warning fs-2"> No genre in the database </td>
                             </tr>
                         @else
-                            @foreach ($book as $item)
-                                <tr onclick="document.location.href='/admin/book/{{ $item->book_id }}'" class="cursor">
-                                    <td> {{ $item->book_title }} </td>
-                                    <td> {{ $item->description }} </td>
-                                    <td> {{ $item->author }} </td>
-                                    <td> XAF{{ $item->price }} </td>
-                                    <td> {{ $item->genre_name }} </td>
+                            @foreach ($genre as $item)
+                                <tr onclick="document.location.href='/admin/genre/{{ $item->genre_id }}'" class="cursor">
+                                    <td colspan="2"> {{ $item->genre_name }} </td>
+                                    <td colspan="3"> {{ $item->genre_description }} </td>
                                 </tr>
                             @endforeach
                         @endif

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('city');
             $table->enum('role', ['user', 'admin'])->default('user');
+            $table->enum('isBan', ['yes', 'no'])->default('no');
             $table->string('telephone')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

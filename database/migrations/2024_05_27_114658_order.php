@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::Create('order', function (Blueprint $table) {
+        Schema::Create('orders', function (Blueprint $table) {
 
             $table->uuid('order_id')->primary();
             $table->foreignUuid('user_id_fk')
@@ -25,6 +25,7 @@ return new class extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
             $table->timestamp('created_at');
+            $table->enum('isValidate', ['yes', 'no'])->default('no');
             $table->timestamp('updated_at')->nullable();
         });
     }

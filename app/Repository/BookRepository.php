@@ -64,7 +64,7 @@ class BookRepository
 
     public function getPaginate(int $number)
     {
-        return $this->_book_repo->paginate($number);
+        return $this->_book_repo->join('genre', 'genre.genre_id', '=', 'book.genre_id')->paginate($number);
     }
 
     // Get a specific book
@@ -73,7 +73,7 @@ class BookRepository
     {
         try
         {
-            return $this->_book_repo->where('book_id', $book_id)->get();
+            return $this->_book_repo->join('genre', 'genre.genre_id', '=', 'book.genre_id')->where('book_id', $book_id)->get();
             
         }
         catch(Exception $e)
@@ -88,7 +88,15 @@ class BookRepository
     {
         try
         {
-            $this->_book_repo->where('book_id', $book_id)->update($input);
+            $this->_book_repo->where('book_id', $book_id)->update([
+                "book_title" => $input['book_title'],
+                "author" => $input['author'],
+                "description" => $input['description'],
+                "genre_id" => $input['genre-id'],
+                "price" => $input['price'],
+                "user_id_fk" => $input['user_id_fk'],
+                "updated_at" => now()
+            ]);
             return true;
         }
         catch(Exception $e)

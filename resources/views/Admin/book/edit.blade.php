@@ -28,14 +28,14 @@
                     @foreach ($book as $item)
                         <form class="row g-3" action="/admin/book/{{ $item->book_id }}" method="post" enctype="multipart/form-data" > 
                             @csrf
-                            @method('PUT')
+                            @method('PATCH')
                             <input type="text" name="user_id_fk" value="{{ Auth::user()->user_id }}" hidden>
                             <input type="text" name="book_id" value={{$item->book_id}} hidden>
                             <div class="col-md-6">
                                 <label for="inputEmail4" class="form-label">Boot title</label>
                                 <input type="text" name="book_title" value="{{ $item->book_title }}" placeholder="Harry potter" class="form-control" id="inputEmail4">
                             @error('book_title')
-                                <div class="text-danger small"> {{ $message }}</div>
+                                <div class="text-danger small">{{ $message }}</div>
                             @enderror
                             </div>
                             <div class="col-md-6">
@@ -55,11 +55,17 @@
                             <div class="col-md-6">
                                 <label for="inputState" class="form-label">Select genre</label>
                                 <select id="inputGenre" class="form-select" name="genre-id" >
-                                <option disabled selected>Choose...</option>
-                                <option value="Art">Art</option>
+                                    <option selected value="{{$item->genre_id}}">{{$item->genre_name}}</option>
+                                    @foreach ($genre as $item_genre)
+                                        @if ($item->genre_id== $item_genre->genre_id)
+                                            @continue
+                                        @else
+                                            <option value="{{$item_genre->genre_id}}">{{$item_genre->genre_name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
-                                @error('genre')
-                                <div class="text-danger small">{{ $message }}</div>
+                                @error('genre-id')
+                                <div class="text-danger small"> {{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="col-12">
@@ -76,7 +82,7 @@
                             </div>
                             
                             <div class="col-12">
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-arrow-repeat"></i> Update</button>
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-arrow-repeat"></i> Update</button>
                             </div>
                         </form>
                     @endforeach
