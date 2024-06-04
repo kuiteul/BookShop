@@ -24,7 +24,6 @@
                 <table class="table border">
                     <thead>
                         <td colspan="6" class="text-center">users present in the database</td>
-                        <td> <a href=" {{url('admin/user/create') }}" alt="Add a book"><i class="bi bi-lock-fill"></i> Reset password</a></td>
                     </thead>
                     <tbody>
                         <tr>
@@ -33,22 +32,21 @@
                             <th>Email</th>
                             <th>Telephone</th>
                             <th>Country</th>
-                            <th colspan="2">is ban ?</th>
+                            <th>Password reset</th>
                         </tr>
-                        @if($user->isEmpty())
+                        @if($users->isEmpty())
                             <tr>                     
                                 <td colspan="7" class="text-center text-warning fs-2"> No user in the database </td>
                             </tr>
                         @else
-                            @foreach ($user as $item)
+                            @foreach ($users as $item)
                                 <tr onclick="document.location.href='/admin/user/{{ $item->user_id }}'" class="cursor">
-                                    <td> {{ $item->uf_name }} </td>
+                                    <td> {{ $item->f_name }} </td>
                                     <td> {{ $item->l_name }} </td>
                                     <td> {{ $item->email}} </td>
                                     <td> {{ $item->telephone}} </td>
                                     <td> {{ $item->country }} </td>
-                                    <td> {{ $item->isBan }} </td>
-                                    <td> <a href="{{ url('admin/user/ban')}}">Ban user</a></td>
+                                    <td> <a href=" {{url('admin/user/reset') }}" alt="Add a book"><i class="bi bi-lock-fill"></i> Reset password</a></td>
                                 </tr>
                             @endforeach
                         @endif

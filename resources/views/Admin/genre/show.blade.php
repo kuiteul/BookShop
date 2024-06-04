@@ -21,7 +21,6 @@
                     <div class="col-3 offset-9">
                         <a href=" {{url('admin/genre') }}" alt="Add a genre" class="col"><i class="bi bi-list-task"></i> List of genres</a>
                     </div>
-                    <h1 class="text-center text-capitalize col-8">Add a new genre</h1>
                     <hr>
                 </div>
                 <div class="col-12">

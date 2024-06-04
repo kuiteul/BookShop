@@ -55,7 +55,8 @@ class UserRepository
     {
         $user = new $this->_user_repo;
 
-        return $this->save($user, $input);
+        $this->save($user, $input);
+        return true;
         
     }
 
@@ -73,12 +74,12 @@ class UserRepository
 
     }
 
-    public function getUserId(int $user_id)
+    public function getUser(string $user_id)
     {
 
         try
         {
-            return $this->_user_repo->find($user_id);
+            return $this->_user_repo->where('user_id', $user_id);
         }
         catch(Exception $e)
         {
