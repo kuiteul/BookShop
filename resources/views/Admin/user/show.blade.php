@@ -67,7 +67,7 @@
                                 <label for="inputAddress" class="form-label">Is Ban?</label>
                                 <input type="text" name="is_ban" disabled value="{{ $item->isBan }}" class="form-control" id="inputPassword4">
                             </div>
-                            <form action="/admin/user/{{ $item->user_id}}" method="post"></form>
+                            <div id="isban"></div>
                             @error('is_ban')
                                 <div class="text-danger small"> {{ $message }}</div>
                             @enderror

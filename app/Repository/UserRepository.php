@@ -79,7 +79,7 @@ class UserRepository
 
         try
         {
-            return $this->_user_repo->where('user_id', $user_id);
+            return $this->_user_repo->where('user_id', $user_id)->get();
         }
         catch(Exception $e)
         {

@@ -1,3 +1,4 @@
+
 #welcome-login {
     margin-top: 10%;
 }
@@ -16,6 +17,7 @@ header a {
     color: white !important;
     padding-top: 10% !important;
     padding-bottom: 10%;
+    text-decoration: none;
    
 }
 
@@ -78,4 +80,40 @@ main button {
 
 tr:hover {
     background-color: rgb(26, 28, 82) !important;
+}
+
+.description {
+
+    
+}
+
+.book-shop {
+    display: block !important;
+    margin: 0%;
+    width: 100%;
+    height: 200px;
+}
+
+.book-block {
+    margin-left: 4%;
+    box-shadow: 10px 10px 20px rgb(94, 92, 92);
+}
+
+.book-block:hover {
+    max-width: 20%;
+    box-shadow: 10px 10px 25px rgb(26, 28, 82);
+}
+
+.book-block h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.book-block a {
+    text-decoration: none;
+    color: black;
+}
+
+.message-button {
+    font-size: 10px !important;
 }

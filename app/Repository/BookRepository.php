@@ -5,6 +5,7 @@
     use App\Models\BookModel;
     use App\Models\LogModel;
     use App\Repository\LogRepository;
+    use App\Repository\ImageRepository;
     use Exception;
 
 class BookRepository
@@ -12,13 +13,15 @@ class BookRepository
     protected $_book_repo;
     protected $_log;
     protected $_log_repo;
+    protected $_image;
 
 
-    public function __construct(BookModel $book, LogModel $log, LogRepository $log_repo)
+    public function __construct(BookModel $book, LogModel $log, LogRepository $log_repo, ImageRepository $image)
     {
         $this->_book_repo = $book;
         $this->_log = $log;
         $this->_log_repo = $log_repo;
+        $this->_image = $image;
     }
 
     // save book into database
@@ -64,16 +67,25 @@ class BookRepository
 
     public function getPaginate(int $number)
     {
-        return $this->_book_repo->join('genre', 'genre.genre_id', '=', 'book.genre_id')->paginate($number);
+        return $this->_book_repo->join('genre', 'genre.genre_id', '=', 'book.genre_id')
+                                ->join('image', 'image.book_id_fk', 'book.book_id')
+                                ->paginate($number);
     }
 
+    // Get book id in the database
+    public function getBookId(string $book_title)
+    {
+        return $this->_book_repo->select('book_id')->where("book_title", $book_title)->get();
+    }
     // Get a specific book
 
     public function getBook(string $book_id)
     {
         try
         {
-            return $this->_book_repo->join('genre', 'genre.genre_id', '=', 'book.genre_id')->where('book_id', $book_id)->get();
+            return $this->_book_repo->join('genre', 'genre.genre_id', '=', 'book.genre_id')
+                                    ->join('image', 'image.book_id_fk', 'book.book_id')
+                                    ->where('book_id', $book_id)->get();
             
         }
         catch(Exception $e)
@@ -111,7 +123,9 @@ class BookRepository
     {
         try
         {
-            $this->_book_repo->where('book_id', $book_id)->delete();
+            $this->_book_repo->where('book_id', $book_id)
+                             ->delete();
+            $this->_image->delete($book_id);
             return true;
         }
         catch(Exception $e)

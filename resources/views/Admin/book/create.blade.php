@@ -71,7 +71,11 @@
                         </div>
                         <div class="col-12">
                             <label for="inputAddress2" class="form-label">Select a photo </label>
-                            <input type="file" name="image-name" id="">
+                            <input type="file" name="image" id="">
+                            @error('image')
+                              <div class="text-danger small"> {{ $message }}</div>
+                            @enderror
+                    </div>
                         </div>
                         
                         <div class="col-12">

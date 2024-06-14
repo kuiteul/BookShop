@@ -1,32 +1,184 @@
 @extends('layout/template')
 
-
 @section('title')
-
-    Booshop | Home
-
+    BookShop | Home
 @endsection
-
 
 @section('header')
     @include('layout/header')
 @endsection
 
 @section('content')
-    <div class="position-relative col-12">
-        <main id="dashboard">
-            <div id="card" class="">
-                <form class="col-10 offset-1 col-sm-8 offset-sm-2 row" role="search">
-                    <div class="col-8 offset-1">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+    <br><br>
+    <h1 class="text-center">WELCOME TO OUR BOOSHOP</h1>
+    <br><br>
+    <form class="form-inline my-2 my-lg-0 col-10 offset-1 col-md-8 offset-md-4 row">
+        <div class="col-8">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        </div>
+        <div class="col-3">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </div>
+        
+    </form>
+
+    <br><br>
+    <div class="row">
+        <div class="col-md-3 border">
+            <h2 class="text-left font-weight-bold text-capitalize" style="margin-left: 5%"> filter </h2>
+            <hr>
+            <div class="col-12 row">
+                <div class="form-check col-10 offset-1">
+                    <input class="form-check-input" type="checkbox" value="" id="litterature">
+                    <label class="form-check-label" for="litterature">
+                        Litterature
+                    </label>
                     </div>
-                    <button class="btn btn-outline-success col-2" type="submit"> <i class="bi bi-search"></i> Search</button>
-                </form>
-                      
-                <h1 class="text-center"> Dive into the best online BookShop</h1>
-                <hr>
+                    <br>
+                    <div class="form-check col-10 offset-1">
+                    <input class="form-check-input" type="checkbox" value="" id="science">
+                    <label class="form-check-label" for="science">
+                        Science
+                    </label>
+                    </div>
+                    <div class="form-check col-10 offset-1">
+                    <input class="form-check-input" type="checkbox" value="" id="fiction">
+                    <label class="form-check-label" for="fiction">
+                        Fiction
+                    </label>
+                    </div>
+                    <div class="form-check col-10 offset-1">
+                    <input class="form-check-input" type="checkbox" value="" id="drama">
+                    <label class="form-check-label" for="drama">
+                        Drama
+                    </label>
+                    </div>
             </div>
+        </div>
+         {{-- 
+            Displaying litterature block 
             
-        </main>
+            --}}
+        <div class="col-8 d-flex justify-content-around row g-3" id="litterature">
+            <h2 class="text-capitalize text-left" style="margin-left: 10%;">litterature</h2>
+            @foreach ($book as $item)
+
+                @if ($item->genre_name == "Litterature")
+                    
+                        <div class="col-6 col-md-2 book-block">
+                            <a href="{{ url("/book/$item->book_id")}}" alt=""> 
+                                <div class="col-12">
+                                        <img class="book-shop" src='{{ asset("storage/images/$item->image_name") }}' alt="">
+                                    </div>
+                                <h2 class="text-center">
+                                    {{ $item->book_title }} 
+                                </h2>
+                                <div class="text-center">
+                                    Of: {{ $item->author}}
+                                </div>
+                                <div class="text-center">
+                                    Price: XAF{{ $item->price }}
+                                </div>
+                            </a>
+                        </div>
+                    
+                @endif
+                    
+            @endforeach
+        </div>
+         {{-- 
+            Displaying drama block 
+            
+            --}}
+        <div class="col-8 offset-3 d-flex justify-content-around row g-3 border" id="drama">
+            <h2 class="text-capitalize text-left" style="margin-left: 10%;">Drama</h2>
+            @foreach ($book as $item)
+
+                @if ($item->genre_name == "Drama")
+                    
+                        <div class="col-6 col-md-2 book-block">
+                            <a href="{{ url("/book/$item->book_id")}}" alt=""> 
+                                <div class="col-12">
+                                        <img class="book-shop" src='{{ asset("storage/images/$item->image_name") }}' alt="">
+                                    </div>
+                                <h2 class="text-center">
+                                    {{ $item->book_title }} 
+                                </h2>
+                                <div class="text-center">
+                                    Of: {{ $item->author}}
+                                </div>
+                                <div class="text-center">
+                                    Price: XAF{{ $item->price }}
+                                </div>
+                            </a>
+                        </div>
+                    
+                @endif
+                    
+            @endforeach
+        </div><br>
+         {{-- 
+            Displaying science block 
+            
+            --}}
+        <div class="col-8 offset-3 d-flex justify-content-around row g-3 border" id="science">
+            <h2 class="text-capitalize text-left" style="margin-left: 10%;">Science</h2>
+            @foreach ($book as $item)
+
+                @if ($item->genre_name == "Science")
+                    
+                        <div class="col-6 col-md-2 book-block">
+                            <a href="{{ url("/book/$item->book_id")}}" alt=""> 
+                                <div class="col-12">
+                                        <img class="book-shop" src='{{ asset("storage/images/$item->image_name") }}' alt="">
+                                    </div>
+                                <h2 class="text-center">
+                                    {{ $item->book_title }} 
+                                </h2>
+                                <div class="text-center">
+                                    Of: {{ $item->author}}
+                                </div>
+                                <div class="text-center">
+                                    Price: XAF{{ $item->price }}
+                                </div>
+                            </a>
+                        </div>
+                    
+                @endif
+                    
+            @endforeach
+        </div><br>
+        {{-- 
+            Displaying fiction block 
+            
+            --}}
+        <div class="col-8 offset-3 d-flex justify-content-around row g-3 border" id="fiction">
+            <h2 class="text-capitalize text-left" style="margin-left: 10%;">fiction</h2>
+            @foreach ($book as $item)
+
+                @if ($item->genre_name == "Fiction")
+                    
+                        <div class="col-6 col-md-2 book-block">
+                            <a href="{{ url("/book/$item->book_id")}}" alt=""> 
+                                <div class="col-12">
+                                        <img class="book-shop" src='{{ asset("storage/images/$item->image_name") }}' alt="">
+                                    </div>
+                                <h2 class="text-center">
+                                    {{ $item->book_title }} 
+                                </h2>
+                                <div class="text-center">
+                                    Of: {{ $item->author}}
+                                </div>
+                                <div class="text-center">
+                                    Price: XAF{{ $item->price }}
+                                </div>
+                            </a>
+                        </div>
+                    
+                @endif
+                    
+            @endforeach
+        </div><br>
     </div>
+    <br>
 @endsection

@@ -9,27 +9,36 @@
                 <a class="nav-link active" aria-current="page" href="{{ url('/')}}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Books</a>
+                <a class="nav-link" href="/book">Books</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Genre</a>
+                <a class="nav-link" href="/genre">Genre</a>
               </li>
             </ul>
       </nav>
-      <form action="{{ url('order') }}" method="post" class="col-2" id="shopping-cart">
-          @csrf
-          <button type="submit" class="col-6 btn btn-primary position-releative">
-            Shop
-            <i class="bi bi-cart4"></i>
-              <span class=" translate-middle badge rounded-pill bg-danger">
-                  0
+      <div  class="col-2" id="shopping-cart">
+          <div  class="col-6 position-releative">
+            <a href="{{url('/card')}}">Shop
+              <i class="bi bi-cart4"></i>
+                <span class="translate-middle badge rounded-pill bg-danger">
+                    @isset($card_number)
+                        {{ $card_number }}
+                    @else
+                            0
+                    @endisset
                 </span>
-                
-          </button>
-      </form>
-      <form action="{{ url('logout')}}" method="post" class="col-2" id="logout">
+            </a>
+          </div>
+      </div>
+      @isset($user)
+        <form action="{{ url('logout')}}" method="post" class="col-2" id="logout">
           @csrf
           <button type="submit" class="btn btn-primary"> <i class="bi bi-box-arrow-left"></i> Logout</button>
-      </form>
+        </form>
+      @else
+        <div class="col" id="login-header">
+            <a href="/login" alt="" class=""><i class="bi bi-box-arrow-in-right"></i> Login</a>
+        </div>
+      @endisset
     </div>
 </header>
